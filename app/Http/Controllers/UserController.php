@@ -17,12 +17,12 @@ class UserController extends Controller
     public function index()
     {
 
-		$users=User::with('organization')
-		->orderBy('name')
-		->simplePaginate();
+        $users = User::with('organization')
+        ->orderBy('name')
+        ->simplePaginate();
 
-		return view('users')->with(['users'=>$users]);
-	}
+        return view('users')->with(['users' => $users]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -31,7 +31,6 @@ class UserController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -76,7 +75,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-
     }
 
     /**
