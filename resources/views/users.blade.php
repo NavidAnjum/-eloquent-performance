@@ -22,7 +22,6 @@
     </thead>
     <tbody>
     @foreach($users as $user)
-
         <tr>
         <th scope="row">{{$user->id}}</th>
         <td>{{$user->name}}</td>
@@ -32,10 +31,10 @@
         @endisset
         </td>
         <td>
-            @if($user->last_login_at)
-              {{$user->last_login_at->diffForHumans()}}
+            @if($user->lastLogin)
+              {{$user->lastLogin->created_at->diffForHumans()}}
+                {{$user->lastLogin->user_id}}
             @endif
-
          </td>
          </tr>
     @endforeach

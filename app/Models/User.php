@@ -10,7 +10,9 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,8 +23,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-		'organization_id',
-	];
+        'organization_id',
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -43,20 +45,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-	public function organization()
-	{
-		return $this->belongsTo(Organization::class);
-	}
-	public function login(){
-		return $this->hasMany(Login::class);
-	}
-	public function scopeWithLastLoginAt($query){
-		$query->addSelect(['last_login_at'=> Login::select('created_at')
-			->whereColumn('user_id','users.id')
-			->oldest()
-			->take(1)
-				  ])
-			->withCasts(['last_login_at'=>'datetime']);
-	}
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
+    }
+    public function login()
+    {
+        return $this->hasMany(Login::class);
+    }
 
+    public function lastLogin()
+    {
+        return $this->belongsTo(Login::class);
+    }
+
+    public function scopeWithLastLogin($query)
+    {
+        $query->addSelect(['last_login_id' => Login::select('id')
+            ->whereColumn('user_id', 'users.id')
+            ->latest()
+            ->take(1),
+                ])->with('lastLogin');
+    }
 }

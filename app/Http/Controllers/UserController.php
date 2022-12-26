@@ -17,16 +17,12 @@ class UserController extends Controller
      */
     public function index()
     {
-		 $users = User::
-		WithLastLoginAt()
-		->orderBy('name')
-        ->simplePaginate();
-
-//		 $users = User::with(['organization','login'])
-
-//        ->simplePaginate();
-
-        return view('users')->with(['users' => $users]);
+         $users = User::query()
+            ->withLastLogin()
+            ->orderBy('name')
+            ->where('id', 1)
+            ->paginate();
+         return view('users')->with(['users' => $users]);
     }
 
     /**
