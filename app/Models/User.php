@@ -42,9 +42,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 	public function organization()
 	{
 		return $this->belongsTo(Organization::class);
+	}
+	public function login(){
+		return $this->hasMany(Login::class);
+	}
+	public function scopeWithLastLoginAt($query){
+		$query->addSelect(['last_login_at'=> Login::select('created_at')
+			->whereColumn('user_id','users.id')
+			->oldest()
+			->take(1)
+				  ])
+			->withCasts(['last_login_at'=>'datetime']);
 	}
 
 }

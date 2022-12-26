@@ -16,6 +16,8 @@
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">Organization</th>
+        <th scope="col">Last LogIn</th>
+
     </tr>
     </thead>
     <tbody>
@@ -29,7 +31,13 @@
             {{$user->organization->name}}
         @endisset
         </td>
-    </tr>
+        <td>
+            @if($user->last_login_at)
+              {{$user->last_login_at->diffForHumans()}}
+            @endif
+
+         </td>
+         </tr>
     @endforeach
 
     </tbody>
