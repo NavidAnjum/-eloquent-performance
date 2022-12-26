@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Login;
-use App\Models\Organization;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,16 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-		 $users = User::
-		WithLastLoginAt()
-		->orderBy('name')
-        ->simplePaginate();
-
-//		 $users = User::with(['organization','login'])
-
-//        ->simplePaginate();
-
-        return view('users')->with(['users' => $users]);
+        //
     }
 
     /**
@@ -36,6 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -51,11 +40,11 @@ class UserController extends Controller
 
     /**
      * Display the specified resource.
-     *git
-     * @param  int  $id
+     *
+     * @param  \App\Models\Login  $login
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Login $login)
     {
         //
     }
@@ -63,10 +52,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Login  $login
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Login $login)
     {
         //
     }
@@ -75,20 +64,21 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Login  $login
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Login $login)
     {
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Login  $login
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Login $login)
     {
         //
     }
