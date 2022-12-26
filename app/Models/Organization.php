@@ -9,13 +9,13 @@ class Organization extends Model
 {
     use HasFactory;
 
-	protected $fillable = [
-		'name'
-	];
+    protected $fillable = [
+        'name'
+    ];
 
 
-	public function user()
-	{
-		return $this->hasMany(User::class);
-	}
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }
