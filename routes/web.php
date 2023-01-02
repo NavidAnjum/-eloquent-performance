@@ -1,6 +1,8 @@
 <?php
 
+	use App\Http\Controllers\CommentController;
 	use App\Http\Controllers\LoginController;
+	use App\Http\Controllers\QuestionController;
 	use App\Http\Controllers\UserController;
 	use Illuminate\Support\Facades\Route;
 
@@ -20,3 +22,5 @@
 	});
 	Route::resource('/users',UserController::class);
 	Route::resource('/login',LoginController::class);
+	Route::resource('/question',QuestionController::class);
+	Route::resource('/comment',CommentController::class);

@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Login;
+use App\Models\Comment;
+use App\Models\Question;
+use App\Models\User;
+use Carbon\PHPStan\AbstractMacro;
 use Illuminate\Http\Request;
 
-class LoginController extends Controller
+use function Symfony\Component\Mime\Header\get;
+
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +29,12 @@ class LoginController extends Controller
      */
     public function create()
     {
+		 $questions= Question::with(['user','comment.user'])->paginate(10);
+    	return view('circular_relationships')->with(['questions'=>$questions]);
+
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -40,21 +50,18 @@ class LoginController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Login  $login
+     * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Login $login)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Login  $login
+     * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Login $login)
+    public function edit(Comment $comment)
     {
         //
     }
@@ -63,10 +70,10 @@ class LoginController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Login  $login
+     * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Login $login)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -74,10 +81,10 @@ class LoginController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Login  $login
+     * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Login $login)
+    public function destroy(Comment $comment)
     {
         //
     }

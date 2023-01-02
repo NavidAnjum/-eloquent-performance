@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Factories\QuestionFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
     {
     	$this->call(OrganiationSeeder::class);
     	$this->call(LoginSeeder::class);
+    	$this->call(QuestionSeeder::class);
+
 
     }
 }
