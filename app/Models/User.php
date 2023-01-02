@@ -67,4 +67,11 @@ class User extends Authenticatable
             ->take(1),
                 ])->with('lastLogin');
     }
+	public function question(){
+		return $this->hasMany(Question::class);
+	}
+    public function comment(){
+    	return $this->hasMany(Comment::class);
+	}
+
 }
